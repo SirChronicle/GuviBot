@@ -13,3 +13,17 @@ DISCUSSION-:
 3.Ideas such as github notifier and meeting notifier suggested by Technical Director and President
 4.Teammates asked to learn the basics of How to create a bot
 
+
+
+
+DATE: 02/06/2021
+
+MEMBERS ATTENDED-:
+1.TANMAY
+2.RITHIKA
+3.PRAKHAR
+
+DISCUSSION-:
+1.Finalized Ideas for discord bot
+2.Given 2 days time to the team to learn and practise making bots
+3.On 04/06/2021 another meet would be conducted wherein deadlines would be decided
