@@ -27,3 +27,18 @@ DISCUSSION-:
 1.Finalized Ideas for discord bot
 2.Given 2 days time to the team to learn and practise making bots
 3.On 04/06/2021 another meet would be conducted wherein deadlines would be decided
+
+
+DATE: 04/06/2021
+
+MEMBERS ATTENDED-:
+1.TANMAY
+2.RITHIKA
+3.PRAKHAR
+4.Pradipta
+5.SHUBRA
+
+DISCUSSION-:
+1.Finalized Ideas for discord bot
+2.Given deadline of 14/06/2021 to complete the individual features.
+3.Finalized mogoDb as the database to be used and it would be hostedon heroku.
