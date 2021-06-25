@@ -23,7 +23,6 @@ async def scheduleMeet(message):
     sch_time = datetime.strptime(arg3, format)
     sch_stamp = datetime.timestamp(sch_time)
     countmeet = dbs.Count_Meet.find()
-    print(countmeet)
     for item in countmeet:
         counter = item["count"]
         dbs.Data.insert_one({"ids": str(counter), "Topic": str(arg1), "DateTime": sch_time, "Description": str(arg2), "TimeStamp": sch_stamp, "Reminder": 2})
@@ -31,7 +30,7 @@ async def scheduleMeet(message):
         await message.channel.send(f"Scheduled successfully! ID: {counter}")
         dbs.Count_Meet.update_one({"ids": "4"}, {"$inc": {"count": 1}})
         embed = discord.Embed(
-            title="Meeting Scheduled",
+            title="Meeting Scheduled💻",
             description="Topic: " +
             str(arg1) + "\n" + str(arg2),
 
@@ -62,8 +61,6 @@ async def scheduleMeet(message):
         ment = list()
         for user in men:
             ment.append(user[3:-1])
-        print(ment)
         msgid = message.channel.id
         dbs.Data.update_one({"ids": str(counter)}, {"$set": {"members": ment}})
         dbs.Data.update_one({"ids": str(counter)}, {"$set": {"MessageChannel": msgid}})
-        print(msgid)
