@@ -1,15 +1,9 @@
 from dbmongo import db
-import asyncio
 from datetime import datetime
-import pymongo
 import discord
 global times_used
 
 dbs = db.connection()
-
-# mydb = dbs.DiscordBot
-
-# client = discord.Client()
 
 async def scheduleMeet(message, Client):
     index = message.content.index(' ')
@@ -30,8 +24,6 @@ async def scheduleMeet(message, Client):
         print("Scheduled successfully!")
         await message.channel.send(f"Scheduled successfully! ID: {counter}")
         dbs.Count_Meet.update_one({"ids": "4"}, {"$inc": {"count": 1}})
-        # time2 = datetime.strptime(arg3, format2)
-        # time2.strftime(format2)
         time2=sch_time.strftime(format2)
         title = f'''
 🖥️🖥️🖥️🖥️🖥️
@@ -45,19 +37,13 @@ Meeting Scheduled
         embed.set_author(name=str(name)[:-5])
         embed.add_field(name='Topic', value=str(arg1))
         embed.add_field(name='Time', value=time2)
-        embed.add_field(name='Description', value=str(arg2))
+        embed.add_field(name='Description', value=str(arg2), inline=False)
         embed.set_footer(text="Please attend the meeting")
         emoji1 = '✅'
         emoji2 = '❎'
         mentions = sch[-1]
         men = mentions.split()
         for user in men:
-            # if str(user) == '@everyone':
-            #     channel_id = 858220674090926100
-            #     channel = Client.get_channel(channel_id)
-            #     msg = await channel.send(embed=embed)
-            #     await msg.add_reaction(emoji1)
-            #     await msg.add_reaction(emoji2)
             if str(user) == '@here':
                 msg = await message.channel.send(embed=embed)
                 await msg.add_reaction(emoji1)
