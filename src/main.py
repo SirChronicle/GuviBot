@@ -19,9 +19,9 @@ async def on_message(message):
         return
     elif message.content.startswith('&schedule'):
         print("meet")
-        await meet.scheduleMeet(message)
+        await meet.scheduleMeet(message,client)
     elif message.content.startswith('&Task'):
         await tasks.Tasks(message)
 
 
-client.run('{token}')
+client.run('ODQ5NjMyNjYwODkyNTQ5MTIx.YLeAEw.yqzSq3huUrmspRon0AGkAIwkpyk')
