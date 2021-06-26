@@ -9,9 +9,9 @@ dbs = db.connection()
 
 # mydb = dbs.DiscordBot
 
-client = discord.Client()
+# client = discord.Client()
 
-async def scheduleMeet(message):
+async def scheduleMeet(message, Client):
     index = message.content.index(' ')
     index = index + 1
     main_message = message.content[index:]
@@ -20,6 +20,7 @@ async def scheduleMeet(message):
     arg2 = sch[1]
     arg3 = sch[2]
     format = '%Y-%m-%d %H:%M:%S'
+    format2 = '%d %b %Y(%a) %I:%M %p'
     sch_time = datetime.strptime(arg3, format)
     sch_stamp = datetime.timestamp(sch_time)
     countmeet = dbs.Count_Meet.find()
@@ -29,27 +30,34 @@ async def scheduleMeet(message):
         print("Scheduled successfully!")
         await message.channel.send(f"Scheduled successfully! ID: {counter}")
         dbs.Count_Meet.update_one({"ids": "4"}, {"$inc": {"count": 1}})
+        # time2 = datetime.strptime(arg3, format2)
+        # time2.strftime(format2)
+        time2=sch_time.strftime(format2)
+        title = f'''
+🖥️🖥️🖥️🖥️🖥️
+Meeting Scheduled
+        '''
         embed = discord.Embed(
-            title="Meeting Scheduled💻",
-            description="Topic: " +
-            str(arg1) + "\n" + str(arg2),
-
+            title=title,
             colour=discord.Colour.blue()
         )
         name = message.author
         embed.set_author(name=str(name)[:-5])
+        embed.add_field(name='Topic', value=str(arg1))
+        embed.add_field(name='Time', value=time2)
+        embed.add_field(name='Description', value=str(arg2))
         embed.set_footer(text="Please attend the meeting")
         emoji1 = '✅'
         emoji2 = '❎'
         mentions = sch[-1]
         men = mentions.split()
         for user in men:
-            if str(user) == '@everyone':
-                channel_id = 850764561153785906
-                channel = client.get_channel(channel_id)
-                msg = await channel.send(embed=embed)
-                await msg.add_reaction(emoji1)
-                await msg.add_reaction(emoji2)
+            # if str(user) == '@everyone':
+            #     channel_id = 858220674090926100
+            #     channel = Client.get_channel(channel_id)
+            #     msg = await channel.send(embed=embed)
+            #     await msg.add_reaction(emoji1)
+            #     await msg.add_reaction(emoji2)
             if str(user) == '@here':
                 msg = await message.channel.send(embed=embed)
                 await msg.add_reaction(emoji1)
