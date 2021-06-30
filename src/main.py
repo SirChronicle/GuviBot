@@ -7,10 +7,18 @@ from commands import meetcmd
 from commands import member
 from commands import helpcmd
 
-client = discord.Client()
+intents = discord.Intents.default()
+intents.members = True
+client = discord.Client(intents=intents)
+
+
+
 @client.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('-----')
     await remainder.remainder(client)
 
 @client.event
@@ -31,8 +39,8 @@ async def on_message(message):
 
 @client.event
 async def on_member_join(member):
-    guild = client.get_guild(850079276102844449)
-    channel = guild.get_channel(850079276102844452)
+    guild = client.get_guild(842347729082253333)
+    channel = guild.get_channel(859692110788689920)
     await channel.send(f'{member.mention} just joined the server !! :grin: ')
     embed=discord.Embed(
         title="Welcome "+member.name+"!",
@@ -60,8 +68,8 @@ async def on_member_join(member):
 
 @client.event
 async def on_member_leave(member):
-    guild = client.get_guild(850079276102844449)
-    channel = guild.get_channel(850079276102844452)
+    guild = client.get_guild(842347729082253333)
+    channel = guild.get_channel(859692110788689920)
     embed=discord.Embed(
         title="Adios !! "+member.name+"!",
         description="It's sad but we will move on :cry: ",
@@ -77,4 +85,4 @@ async def on_member_leave(member):
     await channel.send(embed=embed)
 
 
-client.run('ODU4NTIyOTgyMzIyMjc0Mzc0.YNfX1Q.7q2x0Bj5YMnyonkXYLMpXCTbOag')
+client.run('ODQyMzQzOTMyNzk2ODYyNDk3.YJz76w.slSfbhWw7-XmDbPOW2xZ-Cn5wSM')

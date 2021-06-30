@@ -9,10 +9,8 @@ async def send_after_reminder(Client, MeetSchema):
             channel = Client.get_channel(channel_id)
             await channel.send(embed=embed)
         else:
-            print('else statement')
             member = await Client.fetch_user(id)
             embed = discord.Embed(title='Meeting Now', description='Topic: '+ top, color=discord.Colour.green())
             embed.set_footer(text='Please join meeting!!')
             embed.set_thumbnail(url = member.avatar_url)
             await member.send(embed=embed)
-            print('end of else')
