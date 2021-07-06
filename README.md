@@ -10,13 +10,13 @@ A discord bot to manage the everyday work at the GCC Discord server. All the coo
 
 <a href="https://discord.com/api/oauth2/authorize?client_id=858522982322274374&permissions=8&scope=bot"><img align="right" width="500" height="500" title="GuviMan" src="https://github.com/Guvi-CodeCamp-SRM/Dicord-Bot-1/blob/main/Guviman_logo.png"/><a>
 
-**Tech-Stack** ⚙
+## **Tech-Stack** ⚙
 
 * Python
 * Discord.py
 * MongoDB
  
-**Future Updates** 🔮
+## **Future Updates** 🔮
 
 * A level system in the bot itself so that whenever someone completes a task or contributes something related to bot they will get some experience and so it can create a competitive environment.
 * Creating Polls on discord.
