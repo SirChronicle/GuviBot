@@ -1,6 +1,6 @@
 # Dicord-Bot-1 a.k.a. **GuviMan**
  
-## Description 💭
+## Description 💬
 A discord bot to manage the everyday work at the GCC Discord server. All the cool features are listed below:- 
 
 1. Maintaining record of tasks submitted among the members by the task name and the members allotted for that particular task.
@@ -27,7 +27,7 @@ The commands to all our features are listed below :-
 
 * `&help` :- The bot will display all the available commands which can be used 
 
-## People who contributed
+## People who contributed 🤝
 
 * https://github.com/rithika0508
 * https://github.com/tanmaysharma015
