@@ -5,7 +5,7 @@ A discord bot to manage the everyday work at the GCC Discord server. All the coo
 
 1. Maintaining record of tasks submitted among the members by the task name and the members allotted for that particular task.
 2. Sending notifications before deadlines.
-3. Sending notifications to the invited members just before a meeting and also 30 minutes prior to the meeting
+3. Sending notifications to the invited members just before a meeting and also 30 minutes prior to the meeting.
 4. Giving a Welcome message.
 
 <a href="https://discord.com/api/oauth2/authorize?client_id=858522982322274374&permissions=8&scope=bot"><img align="right" width="500" height="500" title="GuviMan" src="https://github.com/Guvi-CodeCamp-SRM/Dicord-Bot-1/blob/main/Guviman_logo.png"/><a>
