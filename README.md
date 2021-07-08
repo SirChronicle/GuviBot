@@ -25,7 +25,12 @@ A discord bot to manage the everyday work at the GCC Discord server. All the coo
 ## Commands 👀
 The commands to all our features are listed below :-
 
-* `&help` :- The bot will display all the available commands which can be used 
+* `&help` :- The bot will display all the available commands which can be used.
+* `&Task Topic Mentions Duration` :- The bot will assign the particular task to the members mentioned and also create roles.
+* `&schedule<sp>Topic<sp><sp>Description<sp><sp>DateTime<sp><sp>Mentions` :- The bot will schedule meeting and also send reminder for it. <sp> -> space
+* `&member count MeetID` :- The bot will show how many members are personally invited to a particular meeting.
+* `&meet count` :- The bot will display how many meetings are scheduled to happen (pending meetings).
+ 
 
 ## People who contributed 🤝
 
