@@ -37,4 +37,4 @@ The commands to all our features are listed below :-
 * https://github.com/rithika0508
 * https://github.com/tanmaysharma015
 * https://github.com/ProMinato500
-* https://github.com/kritiikakkar
+
