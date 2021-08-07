@@ -1,88 +1,78 @@
 import discord
-from datetime import datetime
-from commands import meet
-from commands import tasks
-from remainder import remainder
-from commands import meetcmd
-from commands import member
-from commands import helpcmd
+import os
+import requests
+import json
+from keep_alive import keep_alive
+import asyncio
+import random
+#from replit import db
+from dotenv import load_dotenv
 
-intents = discord.Intents.default()
-intents.members = True
-client = discord.Client(intents=intents)
+load_dotenv()
 
+api_key = os.getenv('api_key')
+token = os.getenv('token')
+print(token)
+client = discord.Client()
+
+
+x = ["what's up","whats up","what's going on in the world","get me some news","news"]
+
+response = requests.get("https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey="+api_key)
+# response = requests.get("https://gnews.io/api/v4/search?q=example&token=d3e4d488715f19959b934cf3ef7029df")
+json_data = json.loads(response.text)
+#print(json_data)
+
+def get_news():
+  randomNumber=random.randint(0,len(json_data["articles"]))
+  news = "\n"+"**"+json_data["articles"][randomNumber]["title"]+"**"+"\n"+"```"+json_data["articles"][randomNumber]["description"]+"```"+"\n"+json_data["articles"][randomNumber]["urlToImage"]+"\n"+'*Published At:'+json_data["articles"][randomNumber]["publishedAt"]+"*"
+  print(news)
+  return (news)
 
 
 @client.event
 async def on_ready():
-    print('logged in as')
-    print(client.user.name)
-    print(client.user.id)
-    print('-----')
-    await remainder.remainder(client)
+  print('We have logged in as {0.user}'.format(client))
+  await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name='The News'))
+
+@client.event
+async def on_guild_join(guild):
+    channel = await guild.create_text_channel('breaktech')
+    await channel.send("Hello! I am BreakTech, bringing you the latest technology news!")
+    channel = await guild.create_text_channel('24hour')
+    await channel.send("24x7 news, brought to you by BreakTech.")
+
+    
+
+channels = ['breaktech']
+channel = ['24hour']
 
 @client.event
 async def on_message(message):
-    if message.author.bot:
-        return
-    elif message.content.startswith('&schedule'):
-        await meet.scheduleMeet(message,client)
-    elif message.content.startswith('&Task'):
-        await tasks.Tasks(message)
-    elif message.content.startswith('&meet'):
-            await meetcmd.meet(message)
-    elif message.content.startswith('&member'):
-        await member.membr(message)
-    elif message.content.startswith('&help'):
-        await helpcmd.help(message)
+  if str(message.channel) in channels:
+    if message.author == client.user:
+      return
+    if message.content.startswith('!hi'):
+      await message.channel.send('Hello!')
+    if message.content.startswith('!headline'):
+      news = get_news()
+      await message.channel.send(news)
+    msg = message.content
+    if any(word in msg for word in x):
+      news = get_news()
+      await message.channel.send(news)
 
 
-@client.event
-async def on_member_join(member):
-    guild = client.get_guild(842347729082253333)
-    channel = guild.get_channel(859692110788689920)
-    await channel.send(f'{member.mention} just joined the server !! :grin: ')
-    embed=discord.Embed(
-        title="Welcome "+member.name+"!",
-        description="This is the GCC Code Camp discord server!",
-        color=0x0000FF,
-        timestamp=datetime.utcnow()
-    )
-    embed.add_field(name="Name", 
-                    value=member.mention, 
-                    inline=True)
-    embed.add_field(name="Who am I ?", 
-                    value=f'Hello Adventurer !! I am the GuviBot. I was made for the sole purpose of helping you out in this amazing journey of yours with the GCC. So come along, as you very own adventure awaits!!!! ',
-                    inline=False)
-    embed.set_thumbnail(url=member.avatar_url)
-    embed.set_author(name="GUVI Code Camp",
-                     url="https://www.gccatsrm.tech/",
-                     icon_url=guild.icon_url)
-    embed.set_footer(text="                  ")
-    embed.set_image(url="https://media.giphy.com/media/IgGcxqawkRc6y43Z6I/giphy.gif")
-    await channel.send(embed=embed)
+  if str(message.channel) in channel:
+    if message.content.startswith('24x7'):
+      async def report():
+        news = get_news()
+        await message.channel.send(news)
+        await asyncio.sleep(3600)
+        await report()
+      await report()
+    
+keep_alive()
 
-    await member.send(f'Hello {member.mention} !! I am the GuviBot. :robot: ')
-    await member.send(f'You have just joined -- {guild.name}. Have Fun !! :partying_face: !!')
-
-
-@client.event
-async def on_member_leave(member):
-    guild = client.get_guild(842347729082253333)
-    channel = guild.get_channel(859692110788689920)
-    embed=discord.Embed(
-        title="Adios !! "+member.name+"!",
-        description="It's sad but we will move on :cry: ",
-        color=0x0000FF
-    )
-    embed.add_field(name="Name", 
-                    value=member.mention, 
-                    inline=True)
-    embed.add_field(name="Message", 
-                    value=f'Have a nice life!! ', 
-                    inline=True)
-    embed.set_thumbnail(url=member.avatar_url)
-    await channel.send(embed=embed)
-
-
-client.run('ODQyMzQzOTMyNzk2ODYyNDk3.YJz76w.slSfbhWw7-XmDbPOW2xZ-Cn5wSM')
+#my_secret = os.environ['TOKEN']
+client.run(token)
