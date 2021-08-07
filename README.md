@@ -1,4 +1,4 @@
-# Dicord-Bot-1 a.k.a. **GuviBot**
+# GuviBot
  
 ## Description 💬
 A discord bot to manage the everyday work at the GCC Discord server. All the cool features are listed below:- 
