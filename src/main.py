@@ -34,6 +34,7 @@ async def on_ready():
     )
     embed.set_image(url=gifs)
     await channel.send(embed=embed)
+    
 
 
 load_dotenv()
@@ -58,10 +59,6 @@ def get_news():
   return (news)
 
 
-@client.event
-async def on_ready():
-  print('We have logged in as {0.user}'.format(client))
-  await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name='The News'))
 
 @client.event
 async def on_guild_join(guild):
