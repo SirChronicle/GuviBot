@@ -7,6 +7,34 @@ import asyncio
 import random
 #from replit import db
 from dotenv import load_dotenv
+from datetime import datetime
+from discord import client
+
+
+intents = discord.Intents.default()
+intents.members = True
+client = discord.Client(intents=intents)
+
+gifs = ["https://media.giphy.com/media/Nx0rz3jtxtEre/giphy.gif","https://media.giphy.com/media/IgGcxqawkRc6y43Z6I/giphy.gif"]
+
+
+@client.event
+async def on_ready():
+    print('logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('-----')
+    guild = client.get_guild(850079276102844449)
+    channel = guild.get_channel(850079276102844452)
+    embed=discord.Embed(
+        title="Welcome!",
+        description="This is the GCC Code Camp discord server!",
+        color=0x0000FF,
+        timestamp=datetime.utcnow()
+    )
+    embed.set_image(url=gifs)
+    await channel.send(embed=embed)
+
 
 load_dotenv()
 
