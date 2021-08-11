@@ -1,3 +1,4 @@
+import discord
 import asyncio
 import datetime
 from utils import postReminder

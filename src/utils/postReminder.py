@@ -1,6 +1,6 @@
 import discord
 async def send_after_reminder(Client, TaskSchema):
-    guild = Client.get_guild(int(842347729082253333))
+    guild = Client.get_guild(int(842347810577580042))
     role = guild.get_role(TaskSchema['role_id'])
     if role:
         await role.delete()

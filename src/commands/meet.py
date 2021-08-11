@@ -1,11 +1,18 @@
+# from discord.client import Client
 from dbmongo import db
+import asyncio
 from datetime import datetime
+import pymongo
 import discord
 global times_used
 
 dbs = db.connection()
 
-async def scheduleMeet(message, Client):
+# mydb = dbs.DiscordBot
+
+client = discord.Client()
+
+async def scheduleMeet(message):
     index = message.content.index(' ')
     index = index + 1
     main_message = message.content[index:]
@@ -14,7 +21,6 @@ async def scheduleMeet(message, Client):
     arg2 = sch[1]
     arg3 = sch[2]
     format = '%Y-%m-%d %H:%M:%S'
-    format2 = '%d %b %Y(%a) %I:%M %p'
     sch_time = datetime.strptime(arg3, format)
     sch_stamp = datetime.timestamp(sch_time)
     countmeet = dbs.Count_Meet.find()
@@ -24,26 +30,27 @@ async def scheduleMeet(message, Client):
         print("Scheduled successfully!")
         await message.channel.send(f"Scheduled successfully! ID: {counter}")
         dbs.Count_Meet.update_one({"ids": "4"}, {"$inc": {"count": 1}})
-        time2=sch_time.strftime(format2)
-        title = f'''
-🖥️🖥️🖥️🖥️🖥️
-Meeting Scheduled
-        '''
         embed = discord.Embed(
-            title=title,
+            title="Meeting Scheduled💻",
+            description="Topic: " +
+            str(arg1) + "\n" + str(arg2),
+
             colour=discord.Colour.blue()
         )
         name = message.author
         embed.set_author(name=str(name)[:-5])
-        embed.add_field(name='Topic', value=str(arg1))
-        embed.add_field(name='Time', value=time2)
-        embed.add_field(name='Description', value=str(arg2), inline=False)
         embed.set_footer(text="Please attend the meeting")
         emoji1 = '✅'
         emoji2 = '❎'
         mentions = sch[-1]
         men = mentions.split()
         for user in men:
+            # if str(user) == '@everyone':
+            #     channel_id = 850764561153785906
+            #     channel = client.get_guild(849726457596870717).get_channel(channel_id)
+            #     msg = await channel.send(embed=embed)
+            #     await msg.add_reaction(emoji1)
+            #     await msg.add_reaction(emoji2)
             if str(user) == '@here':
                 msg = await message.channel.send(embed=embed)
                 await msg.add_reaction(emoji1)
@@ -58,3 +65,5 @@ Meeting Scheduled
         msgid = message.channel.id
         dbs.Data.update_one({"ids": str(counter)}, {"$set": {"members": ment}})
         dbs.Data.update_one({"ids": str(counter)}, {"$set": {"MessageChannel": msgid}})
+
+

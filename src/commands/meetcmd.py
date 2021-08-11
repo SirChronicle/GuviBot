@@ -1,9 +1,13 @@
 from dbmongo import db
+import asyncio
+from datetime import datetime
+import pymongo
 import discord
 global times_used
 
 dbs = db.connection()
 
+# mydb = dbs.DiscordBot
 
 client = discord.Client()
 
