@@ -27,7 +27,6 @@ async def on_ready():
     )
     embed.set_image(url=gifs)
     await channel.send(embed=embed)
-    print(client.guilds)
     await remainder.remainder(client)
     
 
