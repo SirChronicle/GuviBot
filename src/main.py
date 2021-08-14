@@ -1,8 +1,5 @@
 import discord
-import asyncio
 import datetime
-import pymongo
-from dbmongo import db
 from commands import meet
 from commands import tasks
 from commands import meetcmd
@@ -20,8 +17,8 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('-----')
-    guild = client.get_guild(850079276102844449)
-    channel = guild.get_channel(850079276102844452)
+    guild = client.get_guild(842347810577580042)
+    channel = guild.get_channel(842347810577580045)
     embed=discord.Embed(
         title="Welcome!",
         description="This is the GCC Code Camp discord server!",
@@ -30,6 +27,8 @@ async def on_ready():
     )
     embed.set_image(url=gifs)
     await channel.send(embed=embed)
+    print(client.guilds)
+    await remainder.remainder(client)
     
 
 @client.event
@@ -95,4 +94,4 @@ async def on_member_leave(member):
     await channel.send(embed=embed)
         
         
-client.run('ODQ5OTA3OTQ5MjYxNDIyNjAy.YLiAdQ.nJwOlDwPXlH0SQGcHZwcinMQFfM')
+client.run('ODQ5NjMyNjYwODkyNTQ5MTIx.YLeAEw.NySyt8fFI66QTgUXq0EKUGtB10M')

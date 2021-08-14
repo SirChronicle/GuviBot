@@ -1,6 +1,4 @@
-import asyncio
 import datetime
-import pymongo
 import discord
 from utils import preReminder
 from dbmongo import db

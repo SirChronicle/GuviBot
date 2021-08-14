@@ -21,3 +21,4 @@ async def send_before_reminder(TaskSchema, message):
         embed.add_field(name = 'Deadline', value = f"{TaskSchema['deadline_date'].date()}")
         embed.set_thumbnail(url = member.avatar_url)
         await member.send(embed=embed)
+    await message.channel.send('All Tasks are alloted')
