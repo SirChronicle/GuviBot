@@ -7,7 +7,7 @@ global times_used
 
 dbs = db.connection()
 
-# mydb = dbs.DiscordBot
+
 
 client = discord.Client()
 

@@ -45,12 +45,6 @@ async def scheduleMeet(message):
         mentions = sch[-1]
         men = mentions.split()
         for user in men:
-            # if str(user) == '@everyone':
-            #     channel_id = 850764561153785906
-            #     channel = client.get_guild(849726457596870717).get_channel(channel_id)
-            #     msg = await channel.send(embed=embed)
-            #     await msg.add_reaction(emoji1)
-            #     await msg.add_reaction(emoji2)
             if str(user) == '@here':
                 msg = await message.channel.send(embed=embed)
                 await msg.add_reaction(emoji1)
