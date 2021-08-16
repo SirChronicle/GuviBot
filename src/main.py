@@ -9,13 +9,13 @@ from datetime import datetime
 from discord import client
 
 
-client = discord.Client()
+# client = discord.Client()
 
 
 intents = discord.Intents.default()
 intents.members = True
 client = discord.Client(intents=intents)
-
+# client = discord.Client()
 
 @client.event
 async def on_ready():
@@ -23,6 +23,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('-----')
+    await remainder.remainder(client)
     
     
 @client.event
@@ -63,9 +64,9 @@ async def on_member_join(member):
 
     await member.send(f'Hello {member.mention} !! I am the GuviBot. :robot: ')
     await member.send(f'You have just joined -- {guild.name}. Have Fun !! :partying_face: !!')
+    await remainder.remainder()    
     
-    
-    @client.event
+@client.event
 async def on_member_leave(member):
     #guild = client.get_guild(*hard-coded guild id*)
     #channel = guild.get_channel(*hard-coded channel id*)
@@ -110,4 +111,4 @@ async def on_message(message):
         await member.membr(message)
 
         
-client.run('ODQ5NjMyNjYwODkyNTQ5MTIx.YLeAEw.NySyt8fFI66QTgUXq0EKUGtB10M')
+client.run('ODQyMzQzOTMyNzk2ODYyNDk3.YJz76w.slSfbhWw7-XmDbPOW2xZ-Cn5wSM')
