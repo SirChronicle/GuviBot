@@ -7,6 +7,7 @@ from commands import member
 from remainder import remainder
 from datetime import datetime
 from discord import client
+import os
 
 intents = discord.Intents.default()
 intents.members = True
@@ -97,4 +98,4 @@ async def on_message(message):
         await member.membr(message)
 
         
-client.run('ODc2NzkzNjc5NDUxNDIyNzMw.YRpPvw.YzgLZx4t-HU6NJeQwlyvM8Gme_w')
+client.run(os.environ['DISCORD_TOKEN'])
