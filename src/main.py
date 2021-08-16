@@ -12,6 +12,11 @@ from discord import client
 client = discord.Client()
 
 
+intents = discord.Intents.default()
+intents.members = True
+client = discord.Client(intents=intents)
+
+
 @client.event
 async def on_ready():
     print('logged in as')
@@ -22,9 +27,9 @@ async def on_ready():
     
 @client.event
 async def on_member_join(member):
-    #guild = client.get_guild(850079276102844449)
-    #channel = guild.get_channel(850079276102844452)
-    
+    #guild = client.get_guild(*hard-coded guild id*)
+    #channel = guild.get_channel(*hard-coded channel id*)
+ 
     guild = member.guild
     channel = discord.utils.get(guild.channels, name = "general")
     #channel = member.channel
@@ -62,8 +67,8 @@ async def on_member_join(member):
     
     @client.event
 async def on_member_leave(member):
-    #guild = client.get_guild(850079276102844449)
-    #channel = guild.get_channel(850079276102844452)
+    #guild = client.get_guild(*hard-coded guild id*)
+    #channel = guild.get_channel(*hard-coded channel id*)
     guild = member.guild
     channel = discord.utils.get(guild.channels, name = "general")
 
