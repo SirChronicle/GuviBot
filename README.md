@@ -10,7 +10,7 @@ A discord bot to manage the everyday work at the GCC Discord server. All the coo
 
 P.S. The invite link is the image itself
 
-<a href="https://discord.com/api/oauth2/authorize?client_id=858522982322274374&permissions=8&scope=bot"><img align="right" width="500" height="500" title="GuviBot" src="https://github.com/Guvi-CodeCamp-SRM/Dicord-Bot-1/blob/main/guvibot%20logo.png"/><a>
+<a href="https://discord.com/api/oauth2/authorize?client_id=876793679451422730&permissions=8&scope=bot"><img align="right" width="500" height="500" title="GuviBot" src="https://github.com/Guvi-CodeCamp-SRM/Dicord-Bot-1/blob/main/guvibot%20logo.png"/><a>
 
 ## Tech-Stack ⚙
 
