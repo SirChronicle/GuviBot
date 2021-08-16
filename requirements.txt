@@ -1,2 +1,2 @@
 discord
-pymongo
+pymongo[srv]
