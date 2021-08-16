@@ -8,14 +8,10 @@ from remainder import remainder
 from datetime import datetime
 from discord import client
 
-
-# client = discord.Client()
-
-
 intents = discord.Intents.default()
 intents.members = True
 client = discord.Client(intents=intents)
-# client = discord.Client()
+
 
 @client.event
 async def on_ready():
@@ -28,13 +24,9 @@ async def on_ready():
     
 @client.event
 async def on_member_join(member):
-    #guild = client.get_guild(*hard-coded guild id*)
-    #channel = guild.get_channel(*hard-coded channel id*)
- 
+
     guild = member.guild
     channel = discord.utils.get(guild.channels, name = "general")
-    #channel = member.channel
-    #await channel.send(f'{member.mention} just joined the server !! :grin: ')
     embed=discord.Embed(
         title="Welcome "+member.name+"!",
         description="This is the GCC Code Camp discord server!",
@@ -53,23 +45,17 @@ async def on_member_join(member):
                      icon_url=guild.icon_url)
     embed.set_footer(text="                  ")
     embed.set_image(url="https://media.giphy.com/media/IgGcxqawkRc6y43Z6I/giphy.gif")
-    #await channel.send(embed=embed)
+
     try:
-        #await message.send_message(discord.utils.get(guild.channels, name = "general"), embed=embed)
         await channel.send(embed=embed)
     except discord.InvalidArgument:
-        #await guild.create_channel(guild, "general", type=discord.ChannelType.text)
-        #await message.send_message(discord.utils.get(guild.channels, name = "channel_name"), embed=embed)
         print("Channel doesn't exist")
 
     await member.send(f'Hello {member.mention} !! I am the GuviBot. :robot: ')
     await member.send(f'You have just joined -- {guild.name}. Have Fun !! :partying_face: !!')
-    await remainder.remainder()    
     
 @client.event
 async def on_member_leave(member):
-    #guild = client.get_guild(*hard-coded guild id*)
-    #channel = guild.get_channel(*hard-coded channel id*)
     guild = member.guild
     channel = discord.utils.get(guild.channels, name = "general")
 
@@ -111,4 +97,4 @@ async def on_message(message):
         await member.membr(message)
 
         
-client.run('ODQyMzQzOTMyNzk2ODYyNDk3.YJz76w.slSfbhWw7-XmDbPOW2xZ-Cn5wSM')
+client.run('ODc2NzkzNjc5NDUxNDIyNzMw.YRpPvw.YzgLZx4t-HU6NJeQwlyvM8Gme_w')
