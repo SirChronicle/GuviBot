@@ -17,18 +17,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('-----')
-    guild = client.get_guild(842347810577580042)
-    channel = guild.get_channel(842347810577580045)
-    embed=discord.Embed(
-        title="Welcome!",
-        description="This is the GCC Code Camp discord server!",
-        color=0x0000FF,
-        timestamp=datetime.utcnow()
-    )
-    embed.set_image(url=gifs)
-    await channel.send(embed=embed)
-    await remainder.remainder(client)
-    
+
 
 @client.event
 async def on_message(message):
