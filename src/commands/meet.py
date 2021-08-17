@@ -23,6 +23,7 @@ async def scheduleMeet(message):
     format = '%Y-%m-%d %H:%M:%S'
     sch_time = datetime.strptime(arg3, format)
     sch_stamp = datetime.timestamp(sch_time)
+    sch_stamp = sch_stamp.astimezone(timezone('Asia/Kolkata'))
     print(sch_stamp)
     countmeet = dbs.Count_Meet.find()
     for item in countmeet:
