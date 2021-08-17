@@ -26,7 +26,7 @@ async def remainder(Client):
                 tz_NY = pytz.timezone('Asia/Kolkata')   
                 datetime_NY = datetime.datetime.now(tz_NY)
                 presentTime = datetime.datetime.timestamp(datetime_NY)
-               
+                print(presentTime, eachMeet["TimeStamp"])
                 if presentTime > eachMeet["TimeStamp"]-1800 and eachMeet["Reminder"] == 2:
                     Task_details.Data.update_one({"ids" : str(id)},{ "$inc" : {"Reminder": -1} })
                     await premeetReminder.send_before_reminder(Client, eachMeet)
