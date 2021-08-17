@@ -7,6 +7,7 @@ from utils import postmeetReminder
 
 Task_details = db.connection()
 async def remainder(Client):
+        print(1)
         try:
             data = Task_details.discord.find()
             for eachTask in data:
