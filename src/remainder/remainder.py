@@ -22,8 +22,9 @@ async def remainder(Client):
             for eachMeet in data:
                 print(2)
                 id = eachMeet["ids"]
-                presentTime = datetime.datetime.now().timestamp()
-                print(presentTime,eachMeet["TimeStamp"])
+                tz_NY = pytz.timezone('Asia/Kolkata')   
+                datetime_NY = datetime.now(tz_NY)
+                presentTime = datetime.timestamp(datetime_NY)
                
                 if presentTime > eachMeet["TimeStamp"]-1800:
                     print(9)
