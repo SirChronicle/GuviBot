@@ -2,6 +2,7 @@ import discord
 import datetime
 from commands import meet
 from commands import tasks
+from commands import helpcmd
 from commands import meetcmd
 from commands import member
 from remainder import remainder
@@ -96,6 +97,8 @@ async def on_message(message):
         await meetcmd.meet(message)
     elif message.content.startswith('&member'):
         await member.membr(message)
+    elif message.content.startswith('&help'):
+        await helpcmd.help(message)
 
         
 client.run(os.environ['DISCORD_TOKEN'])
