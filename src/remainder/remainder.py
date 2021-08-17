@@ -8,7 +8,7 @@ import pytz
 
 Task_details = db.connection()
 async def remainder(Client):
-        print(1)
+        
         try:
             data = Task_details.discord.find()
             for eachTask in data:
@@ -21,18 +21,18 @@ async def remainder(Client):
 
             data = Task_details.Data.find()
             for eachMeet in data:
-                print(2)
+                
                 id = eachMeet["ids"]
                 tz_NY = pytz.timezone('Asia/Kolkata')   
-                datetime_NY = datetime.now(tz_NY)
-                presentTime = datetime.timestamp(datetime_NY)
+                datetime_NY = datetime.datetime.now(tz_NY)
+                presentTime = datetime.datetime.timestamp(datetime_NY)
                
-                if presentTime > eachMeet["TimeStamp"]-1800:
-                    print(9)
+                if presentTime > eachMeet["TimeStamp"]-1800 and eachMeet["Reminder"] == 2:
+                    
                     Task_details.Data.update_one({"ids" : str(id)},{ "$inc" : {"Reminder": -1} })
                     await premeetReminder.send_before_reminder(Client, eachMeet)
-                if presentTime > eachMeet["TimeStamp"]:
-                    print(10)
+                if presentTime > eachMeet["TimeStamp"] and eachMeet["Reminder"] == 1:
+                    
                     await postmeetReminder.send_after_reminder(Client, eachMeet)
                     Task_details.Data.delete_one(eachMeet)
                     print("Meet time")
