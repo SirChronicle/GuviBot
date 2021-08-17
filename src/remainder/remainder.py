@@ -28,11 +28,9 @@ async def remainder(Client):
                 presentTime = datetime.datetime.timestamp(datetime_NY)
                
                 if presentTime > eachMeet["TimeStamp"]-1800 and eachMeet["Reminder"] == 2:
-                    
                     Task_details.Data.update_one({"ids" : str(id)},{ "$inc" : {"Reminder": -1} })
                     await premeetReminder.send_before_reminder(Client, eachMeet)
                 if presentTime > eachMeet["TimeStamp"] and eachMeet["Reminder"] == 1:
-                    
                     await postmeetReminder.send_after_reminder(Client, eachMeet)
                     Task_details.Data.delete_one(eachMeet)
                     print("Meet time")
