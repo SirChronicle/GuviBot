@@ -23,6 +23,8 @@ async def remainder(Client):
                 print(2)
                 id = eachMeet["ids"]
                 presentTime = datetime.datetime.now().timestamp()
+                print(presentTime,eachMeet["TimeStamp"])
+               
                 if presentTime > eachMeet["TimeStamp"]-1800:
                     print(9)
                     Task_details.Data.update_one({"ids" : str(id)},{ "$inc" : {"Reminder": -1} })
