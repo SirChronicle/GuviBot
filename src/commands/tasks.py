@@ -11,9 +11,9 @@ async def Tasks(message):
     elif message.content.startswith('&Task'):
         keywords = ['m','h','d']
         command = message.content.split()
-        if len(command)<5 or command[-1] not in keywords:
+        if len(command)>5 or command[-1] not in keywords:
             await message.channel.send(syntax)
-        elif len(command)>=5:
+        elif len(command)<=5:
             try:
                 duration = int(command[-2])
             except:
