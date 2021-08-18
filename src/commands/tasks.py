@@ -5,7 +5,7 @@ from dbmongo import db
 
 client = discord.Client()
 async def Tasks(message):
-    syntax = '<!Task> <Title> <@all mentions> <duration[whole number]> <["m", "h", "d"]>'
+    syntax = '<&Task> <Title> <@all mentions> <duration[whole number]> <["m", "h", "d"]>'
     if message.author.bot:
         return
     elif message.content.startswith('&Task'):
