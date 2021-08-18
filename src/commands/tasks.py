@@ -13,6 +13,7 @@ async def Tasks(message):
         command = message.content.split()
         if len(command)>5 or command[-1] not in keywords:
             await message.channel.send(syntax)
+            quit()
         elif len(command)<=5:
             try:
                 duration = int(command[-2])
