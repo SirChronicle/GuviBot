@@ -1,6 +1,6 @@
 import discord
 import datetime
-from commands import meet
+from commands import meet2
 from commands import tasks
 from commands import helpcmd
 from commands import meetcmd
@@ -89,8 +89,7 @@ async def on_message(message):
     if message.author.bot:
         return
     elif message.content.startswith('&schedule'):
-        print("meet")
-        await meet.scheduleMeet(message)
+        await meet2.scheduleMeet(message)
     elif message.content.startswith('&Task'):
         await tasks.Tasks(message)
     elif message.content.startswith('&meet'):
@@ -101,4 +100,4 @@ async def on_message(message):
         await helpcmd.help(message)
 
         
-client.run(os.environ['DISCORD_TOKEN'])
+client.run('ODQ5OTA3OTQ5MjYxNDIyNjAy.YLiAdQ.mlWpR6TmhNXPtmmNAnHG4BFYlPM')
