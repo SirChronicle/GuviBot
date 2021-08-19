@@ -11,7 +11,7 @@ async def help(message):
     embed.add_field(name='\n\nFor assigning Task:',
                     value='&Task <Title> <@all mentions> <duration[whole number]> <["m", "h", "d"]>', inline=False)
     embed.add_field(name='\n\n\nFor scheduling meetings:',
-                    value='&schedule <Topic>  <Info>  <DateTime>  <@all mentions>\n(Double space between each argument from after Topic(for scheduling meet only))')
+                    value='&schedule <Topic> <@all mentions> <days>d <hours>h <minute>m')
     embed.add_field(name='\n\n\nFor no. of members(only if sent personally):',
                     value='&member count <meet ID[whole number]>', inline=False)
     embed.add_field(name='\n\n\nFor no. of meet:',
