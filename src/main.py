@@ -54,6 +54,7 @@ async def on_member_join(member):
 
     await member.send(f'Hello {member.mention} !! I am the GuviBot. :robot: ')
     await member.send(f'You have just joined -- {guild.name}. Have Fun !! :partying_face: !!')
+    await member.send(embed=embed)
     
 @client.event
 async def on_member_leave(member):
