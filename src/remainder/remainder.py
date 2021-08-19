@@ -12,7 +12,6 @@ async def remainder(Client):
         try:
             data = Task_details.discord.find()
             for eachTask in data:
-                print(1)
                 presentTime=datetime.datetime.now().timestamp()
                 if presentTime>eachTask['deadline']:
                     await postReminder.send_after_reminder(Client, eachTask)
@@ -26,7 +25,6 @@ async def remainder(Client):
                 tz_NY = pytz.timezone('Asia/Kolkata')   
                 datetime_NY = datetime.datetime.now(tz_NY)
                 presentTime = datetime.datetime.timestamp(datetime_NY)
-                print(presentTime, eachMeet["TimeStamp"])
                 if presentTime > eachMeet["TimeStamp"]-1800 and eachMeet["Reminder"] == 2:
                     Task_details.Data.update_one({"ids" : str(id)},{ "$inc" : {"Reminder": -1} })
                     await premeetReminder.send_before_reminder(Client, eachMeet)
