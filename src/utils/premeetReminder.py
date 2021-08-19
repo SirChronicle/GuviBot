@@ -1,7 +1,6 @@
 import discord
 
 async def send_before_reminder(Client, MeetSchema):
-    print(5)
     top = MeetSchema["Topic"]
     for id in MeetSchema['members']:
         if str(id) == 'r':
