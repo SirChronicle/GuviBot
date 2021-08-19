@@ -13,7 +13,7 @@ async def send_after_reminder(Client, TaskSchema):
             '''
             title = f'''
             Task deadline
-   🕖🕖🕖🕖🕖
+🕖🕖🕖🕖🕖
             '''
             embed = discord.Embed(title=title, description= msg, color=discord.Colour.green())
             embed.set_thumbnail(url = member.avatar_url)
