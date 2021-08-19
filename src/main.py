@@ -100,4 +100,4 @@ async def on_message(message):
         await helpcmd.help(message)
 
         
-client.run('ODQ5OTA3OTQ5MjYxNDIyNjAy.YLiAdQ.mlWpR6TmhNXPtmmNAnHG4BFYlPM')
+client.run('ODQ5OTA3OTQ5MjYxNDIyNjAy.YLiAdQ.cfszk0KagH1UgvdUEc_OCAX_188')

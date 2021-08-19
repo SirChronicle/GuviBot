@@ -16,23 +16,23 @@ async def scheduleMeet(message):
     command = message.content.split()
     title = command[1]
     keyword = command[-3:]
-    duration = 0
     dbs = db.connection()
-    seconds = {
-        "m": duration * 60,
-        "h": duration * 60 * 60,
-        "d": duration * 24 * 60 * 60
-    }
+    
     
     present_timestamp = datetime.now().timestamp()
     deadline_duration = present_timestamp
     for eachTime in keyword:
-        print(eachTime)
         duration = int(eachTime[:-1])
-        print(duration)
+        seconds = {
+            "m": duration * 60,
+            "h": duration * 60 * 60,
+            "d": duration * 24 * 60 * 60
+        }
+
         k = eachTime[-1]
+
         deadline_duration = deadline_duration + seconds[k]
-        print(deadline_duration)
+
 
     schedule_date = datetime.fromtimestamp(deadline_duration)
     countmeet = dbs.Count_Meet.find()
@@ -68,7 +68,6 @@ async def scheduleMeet(message):
         ment = list()
         for user in men:
             ment.append(user[3:-1])
-        print(ment)
         msgid = message.channel.id
         dbs.Data.update_one({"ids": str(counter)}, {"$set": {"members": ment}})
         dbs.Data.update_one({"ids": str(counter)}, {
