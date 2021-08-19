@@ -34,6 +34,8 @@ async def on_member_join(member):
         color=0x0000FF,
         timestamp=datetime.utcnow()
     )
+    embed.add_field(value=f'Click the name to go to the GCC official website',
+                    inline=False)
     embed.add_field(name="Name", 
                     value=member.mention, 
                     inline=True)
@@ -42,7 +44,6 @@ async def on_member_join(member):
                     inline=False)
     embed.set_thumbnail(url=member.avatar_url)
     embed.set_author(name="GUVI Code Camp",
-                     description="Click the name above to visit the GCC website",
                      url="https://www.gccatsrm.tech/",
                      icon_url=guild.icon_url)
     embed.set_footer(text="                  ")
