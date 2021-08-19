@@ -26,7 +26,6 @@ async def on_ready():
     
 @client.event
 async def on_member_join(member):
-
     guild = member.guild
     channel = discord.utils.get(guild.channels, name = "general")
     embed=discord.Embed(
@@ -73,14 +72,11 @@ async def on_member_leave(member):
                     value=f'Have a nice life!! ', 
                     inline=True)
     embed.set_thumbnail(url=member.avatar_url)
-    #await channel.send(embed=embed)
+
 
     try:
-        #await message.send_message(discord.utils.get(guild.channels, name = "general"), embed=embed)
         await channel.send(embed=embed)
     except discord.InvalidArgument:
-        #await guild.create_channel(guild, "general", type=discord.ChannelType.text)
-        #await message.send_message(discord.utils.get(guild.channels, name = "channel_name"), embed=embed)
         print("Channel doesn't exist")
 
 
@@ -89,7 +85,6 @@ async def on_message(message):
     if message.author.bot:
         return
     elif message.content.startswith('&schedule'):
-        print("meet")
         await meet.scheduleMeet(message)
     elif message.content.startswith('&Task'):
         await tasks.Tasks(message)

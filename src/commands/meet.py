@@ -1,4 +1,3 @@
-# from discord.client import Client
 from dbmongo import db
 import asyncio
 from datetime import datetime
@@ -8,34 +7,43 @@ global times_used
 
 dbs = db.connection()
 
-# mydb = dbs.DiscordBot
-
 client = discord.Client()
 
+
 async def scheduleMeet(message):
-    index = message.content.index(' ')
-    index = index + 1
-    main_message = message.content[index:]
-    sch = main_message.split('  ')
-    arg1 = sch[0]
-    arg2 = sch[1]
-    arg3 = sch[2]
-    format = '%Y-%m-%d %H:%M:%S'
-    sch_time = datetime.strptime(arg3, format)
-    sch_stamp = datetime.timestamp(sch_time)
-    print(sch_stamp)
+    keywords = ['m', 'h', 'd']
+    command = message.content.split()
+    title = command[1]
+    keyword = command[-3:]
+    dbs = db.connection()
+
+    present_timestamp = datetime.now().timestamp()
+    deadline_duration = present_timestamp
+    for eachTime in keyword:
+        duration = int(eachTime[:-1])
+        seconds = {
+            "m": duration * 60,
+            "h": duration * 60 * 60,
+            "d": duration * 24 * 60 * 60
+        }
+
+        k = eachTime[-1]
+
+        deadline_duration = deadline_duration + seconds[k]
+
+    schedule_date = datetime.fromtimestamp(deadline_duration)
     countmeet = dbs.Count_Meet.find()
     for item in countmeet:
         counter = item["count"]
-        dbs.Data.insert_one({"ids": str(counter), "Topic": str(arg1), "DateTime": sch_time, "Description": str(arg2), "TimeStamp": sch_stamp, "Reminder": 2})
+        dbs.Data.insert_one({"ids": str(counter), "Topic": title,
+                            "DateTime": schedule_date, "TimeStamp": deadline_duration, "Reminder": 2})
         print("Scheduled successfully!")
         await message.channel.send(f"Scheduled successfully! ID: {counter}")
         dbs.Count_Meet.update_one({"ids": "4"}, {"$inc": {"count": 1}})
         embed = discord.Embed(
             title="Meeting Scheduled💻",
             description="Topic: " +
-            str(arg1) + "\n" + str(arg2),
-
+            title,
             colour=discord.Colour.blue()
         )
         name = message.author
@@ -43,8 +51,8 @@ async def scheduleMeet(message):
         embed.set_footer(text="Please attend the meeting")
         emoji1 = '✅'
         emoji2 = '❎'
-        mentions = sch[-1]
-        men = mentions.split()
+        mentions = command[2:-3]
+        men = mentions
         for user in men:
             if str(user) == '@here':
                 msg = await message.channel.send(embed=embed)
@@ -59,6 +67,5 @@ async def scheduleMeet(message):
             ment.append(user[3:-1])
         msgid = message.channel.id
         dbs.Data.update_one({"ids": str(counter)}, {"$set": {"members": ment}})
-        dbs.Data.update_one({"ids": str(counter)}, {"$set": {"MessageChannel": msgid}})
-
-
+        dbs.Data.update_one({"ids": str(counter)}, {
+                            "$set": {"MessageChannel": msgid}})

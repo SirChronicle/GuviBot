@@ -17,21 +17,17 @@ async def remainder(Client):
                     await postReminder.send_after_reminder(Client, eachTask)
                     Task_details.discord.delete_one(eachTask)
 
-
             data = Task_details.Data.find()
             for eachMeet in data:
-                
                 id = eachMeet["ids"]
-                tz_NY = pytz.timezone('Asia/Kolkata')   
-                datetime_NY = datetime.datetime.now(tz_NY)
-                presentTime = datetime.datetime.timestamp(datetime_NY)
+                presentTime = datetime.datetime.now().timestamp()
                 if presentTime > eachMeet["TimeStamp"]-1800 and eachMeet["Reminder"] == 2:
-                    Task_details.Data.update_one({"ids" : str(id)},{ "$inc" : {"Reminder": -1} })
+                    Task_details.Data.update_one(
+                        {"ids": str(id)}, {"$inc": {"Reminder": -1}})
                     await premeetReminder.send_before_reminder(Client, eachMeet)
                 if presentTime > eachMeet["TimeStamp"] and eachMeet["Reminder"] == 1:
                     await postmeetReminder.send_after_reminder(Client, eachMeet)
                     Task_details.Data.delete_one(eachMeet)
-                    print("Meet time")
             await asyncio.sleep(10)
             await remainder(Client)
         except:
