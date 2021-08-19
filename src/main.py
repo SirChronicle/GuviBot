@@ -44,7 +44,7 @@ async def on_member_join(member):
     embed.set_author(name="GUVI Code Camp",
                      url="https://www.gccatsrm.tech/",
                      icon_url=guild.icon_url)
-    embed.set_footer(text="                  ")
+    embed.set_footer(text="Click the author name to visit GCC's official website")
     embed.set_image(url="https://media.giphy.com/media/IgGcxqawkRc6y43Z6I/giphy.gif")
 
     try:
