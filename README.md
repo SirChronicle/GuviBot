@@ -8,7 +8,7 @@ A discord bot to manage the everyday work at the GCC Discord server. All the coo
 3. Sending notifications to the invited members just before a meeting and also 30 minutes prior to the meeting.
 4. Giving a Welcome message.
 
-####*__P.S. The invite link is the image itself__*
+*__P.S. The invite link is the image itself__*
 
 <a href="https://discord.com/api/oauth2/authorize?client_id=876793679451422730&permissions=8&scope=bot"><img align="right" width="500" height="500" title="GuviBot" src="https://github.com/Guvi-CodeCamp-SRM/Dicord-Bot-1/blob/main/guvibot%20logo.png"/><a>
 
