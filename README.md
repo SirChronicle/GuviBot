@@ -15,7 +15,6 @@ P.S. The invite link is the image itself
 ## Tech-Stack ⚙
 
 * Python
-* Discord.py
 * MongoDB
  
 ## Future Updates 🔮
