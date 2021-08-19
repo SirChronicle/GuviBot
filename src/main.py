@@ -27,7 +27,7 @@ async def on_ready():
 @client.event
 async def on_member_join(member):
     guild = member.guild
-    channel = discord.utils.get(guild.channels, name = "welcome")
+    channel = discord.utils.get(guild.channels, name = "general")
     embed=discord.Embed(
         title="Welcome "+member.name+"!",
         description="This is the GCC Code Camp discord server!",
@@ -58,7 +58,7 @@ async def on_member_join(member):
 @client.event
 async def on_member_leave(member):
     guild = member.guild
-    channel = discord.utils.get(guild.channels, name = "welcome")
+    channel = discord.utils.get(guild.channels, name = "general")
 
     embed=discord.Embed(
         title="Adios !! "+member.name+"!",
