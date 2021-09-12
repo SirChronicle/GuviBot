@@ -1,7 +1,7 @@
 # GuviBot
  
 ## Description 💬
-A discord bot to manage the everyday work at the GCC Discord server. All the cool features are listed below:- 
+A discord bot to manage the everyday work at any Discord server. All the cool features are listed below:- 
 
 1. Maintaining record of tasks submitted among the members by the task name and the members allotted for that particular task.
 2. Sending notifications before deadlines.
